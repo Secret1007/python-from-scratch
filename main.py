@@ -8,7 +8,7 @@ models.Base.metadata.create_all(bind=engine)
 app = FastAPI(title="Blog API", version="1.0.0")
 
 # 导入路由
-from api import comment_router, users_router, posts_router, auth_router, tags_router
+from api import comment_router, users_router, posts_router, auth_router, tags_router, likes_router
 
 # 注册路由
 app.include_router(auth_router)
@@ -16,6 +16,7 @@ app.include_router(users_router)
 app.include_router(posts_router)
 app.include_router(tags_router)
 app.include_router(comment_router)
+app.include_router(likes_router)
 
 @app.get("/")
 async def read_root():

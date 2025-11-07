@@ -22,6 +22,7 @@ class User(Base):
     avatar_url = Column(String, nullable=True)
     bio = Column(String, nullable=True)
     
+    likes = relationship("Like", back_populates="user")
     posts = relationship("Post", back_populates="author")
     comments = relationship("Comment", back_populates="user")
 

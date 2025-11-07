@@ -13,7 +13,9 @@ class Post(Base):
     author_id = Column(Integer, ForeignKey("users.id"), nullable=False)
     created_at = Column(DateTime, default=func.now())
     updated_at = Column(DateTime, default=func.now(), onupdate=func.now())
+    like_count = Column(Integer, default=0)
     
     author = relationship("User", back_populates="posts")
     tags = relationship("Tag", secondary="post_tags", back_populates="posts")
+    likes = relationship("Like", back_populates="post")
     comments = relationship("Comment", back_populates="post")

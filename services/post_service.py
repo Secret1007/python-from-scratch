@@ -146,6 +146,12 @@ class PostService:
             raise HTTPException(status_code=404, detail="User not found")
         
         return crud.get_user_posts(self.db, user_id)
+
+    def update_post_like_count(self, post_id: int, count: int):
+        post = self.get_post_with_validation(post_id)
+        post.like_count += count
+        self.db.commit()
+        return post
     
     # ============= 辅助方法 =============
     
